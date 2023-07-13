@@ -1,4 +1,5 @@
 import groovy.transform.Field
+@Library('jenkins-library') _
 def label = "buildah"
 def variableTextPath = libraryResource "variableDefinition/variable.yaml"
 def __CACHE_YAML_OBJ = readYaml text: variableTextPath
