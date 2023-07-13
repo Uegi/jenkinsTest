@@ -1,3 +1,4 @@
+import groovy.transform.Field
 def label = "buildah"
 def __CACHE_YAML_OBJ = loadYaml(file: 'variableDefinition/variable.yaml')
 def loadEnvFromConfig(final String envName) {       
