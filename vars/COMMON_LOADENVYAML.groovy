@@ -1,6 +1,7 @@
 def call(final String envName,final String configValue) {       
     def variableTextPath = libraryResource "variableDefinition/variable.yaml"
-    def CACHE_YAML_OBJ = readYaml text: variableTextPath
-   // return CACHE_YAML_OBJ[envName][configValue]
-   return platformProjectName.toString()
+    def templateContent = readYaml text: variableTextPath
+    def renderedContent = templateContent.template()
+    def config = readYaml(text: renderedContent)
+    return config[envName][configValue]
 }
