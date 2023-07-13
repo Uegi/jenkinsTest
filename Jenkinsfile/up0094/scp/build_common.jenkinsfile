@@ -1,9 +1,18 @@
 def label = "buildah"
-    podTemplate(label: label, cloud: 'kubernetes') {
-        node(label) {
-            stage('Run shell') {
-                sh 'sleep 100s'
-                sh 'echo hello world.'
-            }
+def __CACHE_YAML_OBJ = loadYaml(file: 'variableDefinition/variable.yaml')
+def loadEnvFromConfig(final String envName) {       
+    return __CACHE_YAML_OBJ[envName]
+}
+
+def  platformEnvName = "${ENV}"
+
+// define and load a global variable 
+@Field final def String ENV_NEXUS_URL
+ENV_NEXUS_URL = loadEnvFromConfig(platformEnvName.toString())
+podTemplate(label: label, cloud: 'kubernetes') {
+    node(label) {
+        stage('Run shell') {
+            echo "Value 2: ${ENV_NEXUS_URL}"
         }
     }
+}
