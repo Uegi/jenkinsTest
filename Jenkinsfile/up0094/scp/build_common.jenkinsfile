@@ -6,7 +6,7 @@ def  deploymentEnvName   = "${DEPLOYMENT_ENV_NAME}"
 @Field def final  String platformProjectName = "ytest-tete"
 def appSystemId          = "${platformProjectName}".split("-")[0]
 def appProjectName       = "${platformProjectName}".split("-")[1]
-def myvar="123231"
+@Field  def myvar="123231"
 def test() {       
      sh "echo ${myvar}"
 }
