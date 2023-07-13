@@ -8,7 +8,7 @@ def appSystemId          = "${platformProjectName}".split("-")[0]
 def appProjectName       = "${platformProjectName}".split("-")[1]
 // define and load a global variable 
 @Field final def String pipelineConfigTextPath
-pipelineConfigTextPath = COMMON_LOADENVYAML(platformEnvName.toString(),"pipelineConfigTextPath")
+pipelineConfigTextPath = COMMON_LOADENVYAML(platformEnvName.toString(),"pipelineConfigTextPath",platformProjectName.toString())
 
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {

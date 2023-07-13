@@ -1,7 +1,6 @@
-def call(final String envName,final String configValue) {       
+def call(final String envName,final String configValue,final String platformProjectName) {       
     def variableTextPath = libraryResource "variableDefinition/variable.yaml"
     def templateContent = readYaml text: variableTextPath
-    def renderedContent = templateContent.template()
-    def config = readYaml(text: renderedContent)
+    def config = templateContent.greeting.replace("\${platformProjectName}", platformProjectName)
     return config[envName][configValue]
 }
