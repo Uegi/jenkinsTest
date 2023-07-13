@@ -1,17 +1,11 @@
 import groovy.transform.Field
 @Library('jenkins-library') _
 def label = "buildah"
-def variableTextPath = libraryResource "variableDefinition/variable.yaml"
-def __CACHE_YAML_OBJ = readYaml text: variableTextPath
-def loadEnvFromConfig(final String envName) {       
-    return __CACHE_YAML_OBJ[envName]
-}
-
 def  platformEnvName = "${ENV}"
 
 // define and load a global variable 
 @Field final def String ENV_NEXUS_URL
-ENV_NEXUS_URL = loadEnvFromConfig(platformEnvName.toString())
+ENV_NEXUS_URL = COMMON_LOADENVYAML(platformEnvName.toString())
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
         stage('Run shell') {
