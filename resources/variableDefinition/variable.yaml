@@ -2,7 +2,7 @@
 dev1:
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
 sit1: 
-  pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
+  pipelineConfigTextPath: ${platformProjectName}
 uat1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
 dr1:
