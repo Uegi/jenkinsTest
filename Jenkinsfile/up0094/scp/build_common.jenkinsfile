@@ -3,7 +3,8 @@ import groovy.transform.Field
 def label = "buildah"
 def  platformEnvName     = "${PLATFORM_ENV_NAME}"
 def  deploymentEnvName   = "${DEPLOYMENT_ENV_NAME}"
-@Field final def String platformProjectName = "${PLATFORM_PROJECT_NAME}"
+@Field final def String platformProjectName
+platformProjectName = "${PLATFORM_PROJECT_NAME}"
 def appSystemId          = "${platformProjectName}".split("-")[0]
 def appProjectName       = "${platformProjectName}".split("-")[1]
 // define and load a global variable 
