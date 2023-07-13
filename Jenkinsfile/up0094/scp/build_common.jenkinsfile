@@ -1,15 +1,19 @@
 import groovy.transform.Field
 @Library('jenkins-library') _
 def label = "buildah"
-def  platformEnvName = "${ENV}"
-
+def  platformEnvName     = "${PLATFORM_ENV_NAME}"
+def  deploymentEnvName   = "${DEPLOYMENT_ENV_NAME}"
+def  platformProjectName = "${PLATFORM_PROJECT_NAME}"
+def appSystemId          = "${platformProjectName}".split("-")[0]
+def appProjectName       = "${platformProjectName}".split("-")[1]
 // define and load a global variable 
-@Field final def String ENV_NEXUS_URL
-ENV_NEXUS_URL = COMMON_LOADENVYAML(platformEnvName.toString())
+@Field final def String pipelineConfigTextPath
+pipelineConfigTextPath = COMMON_LOADENVYAML(platformEnvName.toString(),"pipelineConfigTextPath")
+
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
         stage('Run shell') {
-            echo "Value 2: ${ENV_NEXUS_URL}"
+            echo "Value 2: ${pipelineConfigTextPath}"
         }
     }
 }

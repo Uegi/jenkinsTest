@@ -1,3 +1,14 @@
-sit: https://sit.com
-uat: https://uat.com
-prod: https://prod.com
+#測試
+dev1:
+  pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
+sit1: 
+  pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
+uat1: 
+  pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
+dr1:
+  pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
+#正式
+prod1: 
+  pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
+prod2: 
+  pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
