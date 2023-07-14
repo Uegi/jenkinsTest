@@ -3,18 +3,22 @@ import groovy.transform.Field
 def label = "buildah"
 def  platformEnvName     = "${PLATFORM_ENV_NAME}"
 def  deploymentEnvName   = "${DEPLOYMENT_ENV_NAME}"
-@Field def final String  platformProjectName = "ytest-tete"
+@Field def final String  platformProjectName
+platformProjectName="${PLATFORM_PROJECT_NAME}"
 def appSystemId          = "${platformProjectName}".split("-")[0]
 def appProjectName       = "${platformProjectName}".split("-")[1]
 
 def templateNev(final String envName,final String configValue) {       
     def variableTextPath = libraryResource "variableDefinition/variable.yaml"
-    def templateContent = readYaml text: variableTextPath
+    def variableTextContent = readYaml text: variableTextPath
+    def variableValue=templateContent[envName][configValue]
+    if(configValue ==="pipelineConfigTextPath"){
+        variableValue.replace('${platformProjectName}', platformProjectName)
+    }
     //def modifiedYaml = templateContent.replace('${platformProjectName}', "sit")
     //writeYaml file: variableTextPath, data: modifiedYaml
     //def finishContent = readYaml text: variableTextPath
-    //return templateContent[envName][configValue]
-    return platformProjectName
+    return variableValue
 }
 
 
@@ -26,11 +30,6 @@ pipelineConfigTextPath = templateNev(platformEnvName.toString(),"pipelineConfigT
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
         stage('Run shell') {
-            script {
-                env.keySet().each { key ->
-                    println "${key}: ${env.get(key)}"
-                }
-            }
             echo "Value 2: ${pipelineConfigTextPath}"
         }
     }
