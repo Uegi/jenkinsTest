@@ -4,5 +4,6 @@ def call(final String envName,final String configValue) {
     //def modifiedYaml = templateContent.replace('${platformProjectName}', "sit")
     //writeYaml file: variableTextPath, data: modifiedYaml
     //def finishContent = readYaml text: variableTextPath
-    return templateContent[envName][configValue]
+    //return templateContent[envName][configValue]
+    return platformProjectName
 }
