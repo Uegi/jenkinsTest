@@ -12,7 +12,7 @@ def templateNev(final String envName,final String configValue) {
     def variableTextPath = libraryResource "variableDefinition/variable.yaml"
     def variableTextContent = readYaml text: variableTextPath
     def variableValue=templateContent[envName][configValue]
-    if(configValue ==="pipelineConfigTextPath"){
+    if(configValue =="pipelineConfigTextPath"){
         variableValue.replace('${platformProjectName}', platformProjectName)
     }
     //def modifiedYaml = templateContent.replace('${platformProjectName}', "sit")
