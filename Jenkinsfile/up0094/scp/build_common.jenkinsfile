@@ -6,9 +6,8 @@ def  deploymentEnvName   = "${DEPLOYMENT_ENV_NAME}"
 //def  platformProjectName = "ytest-tete"
 def appSystemId          = "${platformProjectName}".split("-")[0]
 def appProjectName       = "${platformProjectName}".split("-")[1]
- environment {
-        platformProjectName = 'ytest-tete'
- }
+env.platformProjectName = 'ytest-tete'
+
 
 // define and load a global variable 
 @Field final def String pipelineConfigTextPath
