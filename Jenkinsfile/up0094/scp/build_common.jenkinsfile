@@ -3,9 +3,12 @@ import groovy.transform.Field
 def label = "buildah"
 def  platformEnvName     = "${PLATFORM_ENV_NAME}"
 def  deploymentEnvName   = "${DEPLOYMENT_ENV_NAME}"
-def  platformProjectName = "ytest-tete"
+//def  platformProjectName = "ytest-tete"
 def appSystemId          = "${platformProjectName}".split("-")[0]
 def appProjectName       = "${platformProjectName}".split("-")[1]
+ environment {
+        platformProjectName = 'ytest-tete'
+ }
 
 // define and load a global variable 
 @Field final def String pipelineConfigTextPath
@@ -14,6 +17,11 @@ pipelineConfigTextPath = COMMON_LOADENVYAML(platformEnvName.toString(),"pipeline
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
         stage('Run shell') {
+            script {
+                env.keySet().each { key ->
+                    println "${key}: ${env.get(key)}"
+                }
+            }
             echo "Value 2: ${pipelineConfigTextPath}"
         }
     }
