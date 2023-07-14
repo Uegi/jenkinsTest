@@ -6,10 +6,7 @@ def  deploymentEnvName   = "${DEPLOYMENT_ENV_NAME}"
 @Field def final  String platformProjectName = "ytest-tete"
 def appSystemId          = "${platformProjectName}".split("-")[0]
 def appProjectName       = "${platformProjectName}".split("-")[1]
-@Field  def myvar="123231"
-def test() {       
-     sh "echo ${myvar}"
-}
+
 // define and load a global variable 
 @Field final def String pipelineConfigTextPath
 pipelineConfigTextPath = COMMON_LOADENVYAML(platformEnvName.toString(),"pipelineConfigTextPath")
@@ -17,7 +14,6 @@ pipelineConfigTextPath = COMMON_LOADENVYAML(platformEnvName.toString(),"pipeline
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
         stage('Run shell') {
-            script { test() }
             echo "Value 2: ${pipelineConfigTextPath}"
         }
     }
