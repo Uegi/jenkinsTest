@@ -5,5 +5,5 @@ def call(final String envName,final String configValue) {
     //writeYaml file: variableTextPath, data: modifiedYaml
     //def finishContent = readYaml text: variableTextPath
     //return templateContent[envName][configValue]
-    return ${platformProjectName}
+    return platformProjectName
 }
