@@ -5,9 +5,13 @@ def  platformEnvName     = "${PLATFORM_ENV_NAME}"
 def  deploymentEnvName   = "${DEPLOYMENT_ENV_NAME}"
 @Field def final String  platformProjectName
 platformProjectName="${PLATFORM_PROJECT_NAME}"
-def appSystemId          = "${platformProjectName}".split("-")[0]
+@Field def final String  appSystemId
+appSystemId          = "${platformProjectName}".split("-")[0]
 @Field def final String  appProjectName
 appProjectName       = "${platformProjectName}".split("-")[1]
+
+@Field def final String  scmProjectName
+scmProjectName  ="${SCM_PROJECT_NAME}"
 
 def templateNev(final String envName,final String configValue) {       
     def variableTextPath = libraryResource "variableDefinition/variable.yaml"
@@ -18,6 +22,10 @@ def templateNev(final String envName,final String configValue) {
     }
     if(configValue =="yamlTemplateDir" && (envName in ["prod1","prod2","dr1"])){
         variableValue=variableValue.replace('${appProjectName}', appProjectName)
+    }
+    if(configValue =="scmUrl"){
+        variableValue=variableValue.replace('${appSystemId}', appSystemId)
+        variableValue=variableValue.replace('${scmProjectName}', scmProjectName)
     }
 
     return variableValue
@@ -31,10 +39,12 @@ pipelineConfigTextPath = templateNev(platformEnvName.toString(),"pipelineConfigT
 
 def  yamlTemplateDir =   templateNev(platformEnvName.toString(),"yamlTemplateDir")
 
+def =templateNev(platformEnvName.toString(),"scmUrl")
+
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
         stage('Run shell') {
-            echo "Value 2: ${yamlTemplateDir}"
+            echo "Value 2: ${scmUrl}"
         }
     }
 }
