@@ -1,5 +1,5 @@
 import groovy.transform.Field
-@Library('jenkins-library') _
+@Library('jenkins-library@develop') _
 def label = "buildah"
 def  platformEnvName     = "${PLATFORM_ENV_NAME}"
 def  deploymentEnvName   = "${DEPLOYMENT_ENV_NAME}"
@@ -45,8 +45,11 @@ def prodScmUrlDevOps =templateNev(platformEnvName.toString(),"prodScmUrlDevOps")
 
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
-        stage('Run shell') {
-            echo "Value 2: ${prodScmUrlDevOps}"
+        stage('copy') {
+            sh("""
+                cp -R ../jenkinstest/yaml-template/helm-yaml /home/jenkins/artifact/deployments
+                ls /home/jenkins/artifact/deployments
+            """)
         }
     }
 }
