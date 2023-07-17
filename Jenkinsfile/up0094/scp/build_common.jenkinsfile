@@ -41,10 +41,12 @@ def  yamlTemplateDir =   templateNev(platformEnvName.toString(),"yamlTemplateDir
 
 def  scmUrl        =templateNev(platformEnvName.toString(),"scmUrl")
 
+def prodScmUrlDevOps =templateNev(platformEnvName.toString(),"prodScmUrlDevOps")
+
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
         stage('Run shell') {
-            echo "Value 2: ${scmUrl}"
+            echo "Value 2: ${prodScmUrlDevOps}"
         }
     }
 }
