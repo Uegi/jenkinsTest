@@ -6,20 +6,20 @@ dev1:
 sit1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
   yamlTemplateDir: "javaTemplate-v1"
-  scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}"
+  scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}.git"
 uat1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
   yamlTemplateDir: "javaTemplate-v1"
 dr1:
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
   yamlTemplateDir: "${appProjectName}"
-  scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}"
+  scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}.git"
 #正式
 prod1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
   yamlTemplateDir: "${appProjectName}"
-  scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}"
+  scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}.git"
 prod2: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
   yamlTemplateDir: "${appProjectName}"
-  scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}"
+  scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}.git"
