@@ -14,7 +14,7 @@ appProjectName       = "${platformProjectName}".split("-")[1]
 scmProjectName  ="${SCM_PROJECT_NAME}"
 
 def templateNev(final String envName,final String configValue) {       
-    def variableTextPath = libraryResource "variableDefinition/variable.yaml"
+    def variableTextPath = libraryResource "variableDefinition/test.yaml"
     def variableTextContent = readYaml text: variableTextPath
     def variableValue=variableTextContent[envName][configValue]
     if(configValue =="pipelineConfigTextPath"){
