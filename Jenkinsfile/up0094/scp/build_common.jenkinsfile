@@ -50,9 +50,8 @@ podTemplate(label: label, cloud: 'kubernetes') {
         }
         stage('copy') {
             sh("""
-                ls /home/jenkins/agent/workspace/
                 mkdir -p /home/jenkins/artifact/deployments/helm-yaml
-                cp -R ./jenkinsTest/yaml-template/helm-yaml /home/jenkins/artifact/deployments
+                cp -R ./yaml-template/helm-yaml /home/jenkins/artifact/deployments
                 ls /home/jenkins/artifact/deployments
             """)
         }
