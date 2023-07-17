@@ -45,6 +45,9 @@ def prodScmUrlDevOps =templateNev(platformEnvName.toString(),"prodScmUrlDevOps")
 
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
+        stage('git'){
+            git branch: 'develop', url: 'https://uegi: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@github.com/Uegi/jenkinsTest.git'
+        }
         stage('copy') {
             sh("""
                 ls /home/jenkins/agent/workspace/
