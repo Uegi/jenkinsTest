@@ -39,7 +39,7 @@ pipelineConfigTextPath = templateNev(platformEnvName.toString(),"pipelineConfigT
 
 def  yamlTemplateDir =   templateNev(platformEnvName.toString(),"yamlTemplateDir")
 
-def =templateNev(platformEnvName.toString(),"scmUrl")
+def  scmUrl        =templateNev(platformEnvName.toString(),"scmUrl")
 
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
