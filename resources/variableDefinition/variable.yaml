@@ -1,14 +1,20 @@
 #測試
 dev1:
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
+  yamlTemplateDir: "javaTemplate-v1"
 sit1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
+  yamlTemplateDir: "javaTemplate-v1"
 uat1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
+  yamlTemplateDir: "javaTemplate-v1"
 dr1:
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
+  yamlTemplateDir: "${appProjectName}"
 #正式
 prod1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
+  yamlTemplateDir: "${appProjectName}"
 prod2: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
+  yamlTemplateDir: "${appProjectName}"

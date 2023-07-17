@@ -6,7 +6,8 @@ def  deploymentEnvName   = "${DEPLOYMENT_ENV_NAME}"
 @Field def final String  platformProjectName
 platformProjectName="${PLATFORM_PROJECT_NAME}"
 def appSystemId          = "${platformProjectName}".split("-")[0]
-def appProjectName       = "${platformProjectName}".split("-")[1]
+@Field def final String  appProjectName
+appProjectName       = "${platformProjectName}".split("-")[1]
 
 def templateNev(final String envName,final String configValue) {       
     def variableTextPath = libraryResource "variableDefinition/variable.yaml"
@@ -15,9 +16,10 @@ def templateNev(final String envName,final String configValue) {
     if(configValue =="pipelineConfigTextPath"){
         variableValue=variableValue.replace('${platformProjectName}', platformProjectName)
     }
-    //def modifiedYaml = templateContent.replace('${platformProjectName}', "sit")
-    //writeYaml file: variableTextPath, data: modifiedYaml
-    //def finishContent = readYaml text: variableTextPath
+    if(configValue =="yamlTemplateDir" && (envName in ["prod1","prod2","dr1"])){
+        variableValue=variableValue.replace('${appProjectName}', appProjectName)
+    }
+
     return variableValue
 }
 
@@ -27,10 +29,12 @@ def templateNev(final String envName,final String configValue) {
 @Field final def String pipelineConfigTextPath
 pipelineConfigTextPath = templateNev(platformEnvName.toString(),"pipelineConfigTextPath")
 
+def  yamlTemplateDir =   templateNev(platformEnvName.toString(),"yamlTemplateDir")
+
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
         stage('Run shell') {
-            echo "Value 2: ${pipelineConfigTextPath}"
+            echo "Value 2: ${yamlTemplateDir}"
         }
     }
 }
