@@ -59,8 +59,14 @@ podTemplate(label: label, cloud: 'kubernetes') {
             dir('/home/jenkins/artifact/deployments/helm-yaml'){
                 sh "ls"
                 def yamlConfig = readYaml file: './values.yaml'
-                sh "echo ${yamlConfig}"
-                sh "echo ${yamlConfig.build_number}"
+                yamlConfig.build_number='test'
+                yamlConfig.actuator_port='t1' 
+                yamlConfig.apm_configuration_name='t2'
+                yamlConfig.app_major_version='t3'
+                yamlConfig.app_name='t4'
+                writeYaml file: './values.yaml', data: yamlConfig
+                def yamlConfig2 = readYaml file: './values.yaml'
+                sh "echo ${yamlConfig2}"
             }
         }
     }
