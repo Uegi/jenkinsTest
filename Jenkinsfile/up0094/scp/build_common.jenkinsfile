@@ -64,7 +64,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 yamlConfig.apm_configuration_name='t2'
                 yamlConfig.app_major_version='t3'
                 yamlConfig.app_name='t4'
-                def updatedYaml = writeYaml returnString: true, writePipelineBlock: true, yaml: yamlConfig
+                def updatedYaml = writeYaml returnText: true, yaml: yamlConfig
                 writeFile file: './values.yaml', text: updatedYaml
                 def yamlConfig2 = readYaml file: './values.yaml'
                 sh "echo ${yamlConfig2}"
