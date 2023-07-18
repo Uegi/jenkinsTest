@@ -55,5 +55,11 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 ls /home/jenkins/artifact/deployments
             """)
         }
+         stage('test') {
+            dir('/home/jenkins/artifact/deployments/helm-yaml'){
+                def variableTextContent = readYaml text: "values.yaml"
+                sh "echo ${variableTextContent}"
+            }
+        }
     }
 }
