@@ -64,11 +64,11 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 def t5='t5'
                 sh "ls"
                 def yamlConfig = readYaml file: './values.yaml'
-                yamlConfig.build_number= ${t1}
-                yamlConfig.actuator_port= ${t2} 
-                yamlConfig.apm_configuration_name= ${t3}
-                yamlConfig.app_major_version= ${t4}
-                yamlConfig.app_name= ${t5}
+                yamlConfig.build_number= "${t1}"
+                yamlConfig.actuator_port= "${t2} "
+                yamlConfig.apm_configuration_name= "${t3}"
+                yamlConfig.app_major_version= "${t4}"
+                yamlConfig.app_name= "${t5}"
                 def updatedYaml = writeYaml returnText: true, data: yamlConfig
                 writeFile file: './values.yaml', text: updatedYaml
                 def yamlConfig2 = readYaml file: './values.yaml'
