@@ -1,6 +1,6 @@
 #測試
 dev1:
-  pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
+  pipelineConfigTextPath: "pipelineConfig-ocp410/\"${platformProjectName}\"/common/pipelineConfig.yaml"
   yamlTemplateDir: "javaTemplate-v1"
   scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}"
   prodScmUrlDevOps: null
