@@ -18,17 +18,17 @@ def templateNev(final String envName,final String configValue) {
     def variableTextPath = libraryResource "variableDefinition/variable.yaml"
     def variableTextContent = readYaml text: variableTextPath  
     def variableValue=variableTextContent[envName][configValue]
-    // if(configValue=="pipelineConfigTextPath"){
-        
-    // }
-    // if(configValue=="yamlTemplateDir" && (envName.toString() in ["prod1","prod2","dr1"])){
-    //     variableValue=variableValue.replace('${appProjectName}', appProjectName)
-    // }
+    if(configValue=="pipelineConfigTextPath"){
+        variableValue=variableValue.replace('${platformProjectName}', platformProjectName)
+    }
+    if(configValue=="yamlTemplateDir" && (envName.toString() in ["prod1","prod2","dr1"])){
+        variableValue=variableValue.replace('${appProjectName}', appProjectName)
+    }
 
-    //  if(configValue=="scmUrl"){
-    //     variableValue=variableValue.replace('${appSystemId}', appSystemId)
-    //     variableValue=variableValue.replace('${scmProjectName}', scmProjectName)
-    // }
+     if(configValue=="scmUrl"){
+        variableValue=variableValue.replace('${appSystemId}', appSystemId)
+        variableValue=variableValue.replace('${scmProjectName}', scmProjectName)
+    }
    
     return variableValue
 }
