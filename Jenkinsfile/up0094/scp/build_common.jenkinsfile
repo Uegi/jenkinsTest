@@ -41,7 +41,6 @@ def  yamlTemplateDir =   templateNev(platformEnvName.toString(),"yamlTemplateDir
 def  scmUrl        =templateNev(platformEnvName.toString(),"scmUrl")
 
 def prodScmUrlDevOps =templateNev(platformEnvName.toString(),"prodScmUrlDevOps")
-def serverPrefix = templateNev(platformEnvName.toString(),"serverPrefix")
 
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
