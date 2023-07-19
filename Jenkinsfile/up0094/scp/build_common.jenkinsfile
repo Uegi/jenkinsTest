@@ -18,12 +18,9 @@ def templateNev(final String envName,final String configValue) {
     def variableTextPath = libraryResource "variableDefinition/variable.yaml"
     def variableTextContent = readYaml text: variableTextPath  
     def variableValue=variableTextContent[envName][configValue]
-    variableValue=variableValue.replace('${platformProjectName}', platformProjectName)
-    if(configValue=="yamlTemplateDir" && (envName.toString() in ["prod1","prod2","dr1"])){
+    if(variableValue instanceof String){
+        variableValue=variableValue.replace('${platformProjectName}', platformProjectName)
         variableValue=variableValue.replace('${appProjectName}', appProjectName)
-    }
-
-     if(configValue=="scmUrl"){
         variableValue=variableValue.replace('${appSystemId}', appSystemId)
         variableValue=variableValue.replace('${scmProjectName}', scmProjectName)
     }
@@ -41,6 +38,7 @@ def  yamlTemplateDir =   templateNev(platformEnvName.toString(),"yamlTemplateDir
 def  scmUrl        =templateNev(platformEnvName.toString(),"scmUrl")
 
 def prodScmUrlDevOps =templateNev(platformEnvName.toString(),"prodScmUrlDevOps")
+def serverPrefix = templateNev(platformEnvName.toString(),"serverPrefix")
 
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
