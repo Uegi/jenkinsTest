@@ -3,18 +3,18 @@ dev1:
   pipelineConfigTextPath: "pipelineConfig-ocp410/'${platformProjectName}'/common/pipelineConfig.yaml"
   yamlTemplateDir: "javaTemplate-v1"
   scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}"
-  prodScmUrlDevOps: null
+  prodScmUrlDevOps: "null"
   serverPrefix: [""]
 sit1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
   yamlTemplateDir: "javaTemplate-v1"
   scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}.git"
-  prodScmUrlDevOps: null
+  prodScmUrlDevOps: "null"
   serverPrefix: [""]
 uat1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
   yamlTemplateDir: "javaTemplate-v1"
-  prodScmUrlDevOps: null
+  prodScmUrlDevOps: "null"
   serverPrefix: [""]
 dr1:
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
