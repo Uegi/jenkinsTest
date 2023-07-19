@@ -16,12 +16,12 @@ scmProjectName  ="${SCM_PROJECT_NAME}"
 def variableTextPath = libraryResource "variableDefinition/variable.yaml"
 @Field def  variableTextContent
 variableTextContent = readYaml text: variableTextPath
-
+variableTextContent=variableTextContent.replace('${platformProjectName}', platformProjectName)
 
 def templateNev(final String envName,final String configValue) {       
     def variableValue=variableTextContent[envName][configValue]
     if(configValue=="pipelineConfigTextPath"){
-        variableValue=variableValue.replace('${platformProjectName}', platformProjectName)
+        
     }
     if(configValue=="yamlTemplateDir" && (envName.toString() in ["prod1","prod2","dr1"])){
         variableValue=variableValue.replace('${appProjectName}', appProjectName)
