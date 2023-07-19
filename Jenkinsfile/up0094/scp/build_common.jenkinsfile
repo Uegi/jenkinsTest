@@ -13,40 +13,38 @@ appProjectName       = "${platformProjectName}".split("-")[1]
 @Field def final String  scmProjectName
 scmProjectName  ="${SCM_PROJECT_NAME}"
 
-def variableTextPath = libraryResource "variableDefinition/test.yaml"
-def envLis=["dev1","sit1","uat1","prod1","prod2","dr1"]
-@Field def  variableTextContent
-variableTextContent = readYaml text: variableTextPath
-variableTextContent.replace("${platformProjectName}", platformProjectName)
-def templateNev(final String envName,final String configValue) {       
-    def variableValue=variableTextContent[envName][configValue]
-    if(configValue=="pipelineConfigTextPath"){
-        
-    }
-    if(configValue=="yamlTemplateDir" && (envName.toString() in ["prod1","prod2","dr1"])){
-        variableValue=variableValue.replace('${appProjectName}', appProjectName)
-    }
 
-     if(configValue=="scmUrl"){
-        variableValue=variableValue.replace('${appSystemId}', appSystemId)
-        variableValue=variableValue.replace('${scmProjectName}', scmProjectName)
-    }
+def templateNev(final String envName,final String configValue) {     
+    def variableTextPath = libraryResource "variableDefinition/variable.yaml"
+    def variableTextContent = readYaml text: variableTextPath  
+    def variableValue=variableTextContent[envName][configValue]
+    // if(configValue=="pipelineConfigTextPath"){
+        
+    // }
+    // if(configValue=="yamlTemplateDir" && (envName.toString() in ["prod1","prod2","dr1"])){
+    //     variableValue=variableValue.replace('${appProjectName}', appProjectName)
+    // }
+
+    //  if(configValue=="scmUrl"){
+    //     variableValue=variableValue.replace('${appSystemId}', appSystemId)
+    //     variableValue=variableValue.replace('${scmProjectName}', scmProjectName)
+    // }
    
     return variableValue
 }
 
 
 
-// define and load a global variable 
-// @Field final def String pipelineConfigTextPath
-// pipelineConfigTextPath = templateNev(platformEnvName.toString(),"pipelineConfigTextPath")
+define and load a global variable 
+@Field final def String pipelineConfigTextPath
+pipelineConfigTextPath = templateNev(platformEnvName.toString(),"pipelineConfigTextPath")
 
-// def  yamlTemplateDir =   templateNev(platformEnvName.toString(),"yamlTemplateDir")
+def  yamlTemplateDir =   templateNev(platformEnvName.toString(),"yamlTemplateDir")
 
-// def  scmUrl        =templateNev(platformEnvName.toString(),"scmUrl")
+def  scmUrl        =templateNev(platformEnvName.toString(),"scmUrl")
 
-// def prodScmUrlDevOps =templateNev(platformEnvName.toString(),"prodScmUrlDevOps")
-// def serverPrefix = templateNev(platformEnvName.toString(),"serverPrefix")
+def prodScmUrlDevOps =templateNev(platformEnvName.toString(),"prodScmUrlDevOps")
+def serverPrefix = templateNev(platformEnvName.toString(),"serverPrefix")
 
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
@@ -58,8 +56,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 mkdir -p /home/jenkins/artifact/deployments/helm-yaml
                 cp -R ./yaml-template/helm-yaml /home/jenkins/artifact/deployments
                 ls /home/jenkins/artifact/deployments
-                echo ${variableTextContent["pipelineConfigTextPath"]}
-                echo ${variableTextContent["prodScmUrlDevOps"]}
+                echo ${pipelineConfigTextPath}
             """)
         }
          stage('test') {
