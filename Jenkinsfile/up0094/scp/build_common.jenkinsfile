@@ -16,12 +16,11 @@ scmProjectName  ="${SCM_PROJECT_NAME}"
 def templateNev(final String envName,final String configValue) {       
     def variableTextPath = libraryResource "variableDefinition/test.yaml"
     def variableTextContent = readYaml text: variableTextPath
+    variableTextContent=variableTextContent.replaceAll('${platformProjectName}', platformProjectName)
+    variableTextContent=variableTextContent.replaceAll('${appProjectName}', appProjectName)
+    variableTextContent=variableTextContent.replaceAll('${appSystemId}', appSystemId)
+    variableTextContent=variableTextContent.replaceAll('${scmProjectName}', scmProjectName)
     def variableValue=variableTextContent[envName][configValue]
-    variableValue=variableValue.replace('${platformProjectName}', platformProjectName)
-    variableValue=variableValue.replace('${appProjectName}', appProjectName)
-    variableValue=variableValue.replace('${appSystemId}', appSystemId)
-    variableValue=variableValue.replace('${scmProjectName}', scmProjectName)
-
     return variableValue
 }
 
@@ -67,7 +66,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 def updatedYaml = writeYaml returnText: true, data: yamlConfig
                 writeFile file: './values.yaml', text: updatedYaml
                 def yamlConfig2 = readYaml file: './values.yaml'
-                sh 'echo "${serverPrefix}" '
+                sh 'echo "${serverPrefix}"'
             }
         }
     }
