@@ -13,12 +13,15 @@ appProjectName       = "${platformProjectName}".split("-")[1]
 @Field def final String  scmProjectName
 scmProjectName  ="${SCM_PROJECT_NAME}"
 
+def variableTextPath = libraryResource "variableDefinition/variable.yaml"
+@Field def  variableTextContent
+variableTextContent = readYaml text: variableTextPath
+variableTextContent=variableTextContent.replaceAll('${platformProjectName}', platformProjectName)
+
 def templateNev(final String envName,final String configValue) {       
-    def variableTextPath = libraryResource "variableDefinition/variable.yaml"
-    def variableTextContent = readYaml text: variableTextPath
     def variableValue=variableTextContent[envName][configValue]
     if(configValue=="pipelineConfigTextPath"){
-        variableValue=variableValue.replace('${platformProjectName}', platformProjectName)
+        
     }
     if(configValue=="yamlTemplateDir" && (envName.toString() in ["prod1","prod2","dr1"])){
         variableValue=variableValue.replace('${appProjectName}', appProjectName)
@@ -55,7 +58,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 mkdir -p /home/jenkins/artifact/deployments/helm-yaml
                 cp -R ./yaml-template/helm-yaml /home/jenkins/artifact/deployments
                 ls /home/jenkins/artifact/deployments
-                echo ${serverPrefix}
+                echo ${variableTextContent}[dev1][pipelineConfigTextPath]
             """)
         }
          stage('test') {
