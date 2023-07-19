@@ -60,15 +60,15 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 def t1= 1
                 def t2='2'
                 def t3='t3'
-                def t4='t4'
-                def t5='t5'
+                def t4='false'
+                def t5="true"
                 sh "ls"
                 def yamlConfig = readYaml file: './values.yaml'
                 yamlConfig.build_number= "${t1}"
                 yamlConfig.actuator_port= t2.toInteger()
                 yamlConfig.apm_configuration_name= "\"${t3}\""
-                yamlConfig.app_major_version= "${t4}"
-                yamlConfig.app_name= "${t5}"
+                yamlConfig.app_major_version= ${t4}.toBoolean()
+                yamlConfig.app_name= ${t5}.toBoolean()
                 def updatedYaml = writeYaml returnText: true, data: yamlConfig
                 writeFile file: './values.yaml', text: updatedYaml
                 def yamlConfig2 = readYaml file: './values.yaml'
