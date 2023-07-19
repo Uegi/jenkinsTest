@@ -35,7 +35,7 @@ def templateNev(final String envName,final String configValue) {
 
 
 
-define and load a global variable 
+//define and load a global variable 
 @Field final def String pipelineConfigTextPath
 pipelineConfigTextPath = templateNev(platformEnvName.toString(),"pipelineConfigTextPath")
 
