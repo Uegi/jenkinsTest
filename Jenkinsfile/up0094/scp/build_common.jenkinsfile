@@ -17,7 +17,7 @@ def variableTextPath = libraryResource "variableDefinition/test.yaml"
 def envLis=["dev1","sit1","uat1","prod1","prod2","dr1"]
 @Field def  variableTextContent
 variableTextContent = readYaml text: variableTextPath
-variableTextContent = variableTextContent.replace("${platformProjectName}", platformProjectName)
+//variableTextContent = variableTextContent.replace("${platformProjectName}", platformProjectName)
 def templateNev(final String envName,final String configValue) {       
     def variableValue=variableTextContent[envName][configValue]
     if(configValue=="pipelineConfigTextPath"){
