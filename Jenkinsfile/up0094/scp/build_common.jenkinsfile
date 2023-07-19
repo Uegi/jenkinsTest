@@ -17,16 +17,10 @@ def templateNev(final String envName,final String configValue) {
     def variableTextPath = libraryResource "variableDefinition/test.yaml"
     def variableTextContent = readYaml text: variableTextPath
     def variableValue=variableTextContent[envName][configValue]
-    if(configValue =="pipelineConfigTextPath"){
-        variableValue=variableValue.replace('${platformProjectName}', platformProjectName)
-    }
-    if(configValue =="yamlTemplateDir" && (envName in ["prod1","prod2","dr1"])){
-        variableValue=variableValue.replace('${appProjectName}', appProjectName)
-    }
-    if(configValue =="scmUrl"){
-        variableValue=variableValue.replace('${appSystemId}', appSystemId)
-        variableValue=variableValue.replace('${scmProjectName}', scmProjectName)
-    }
+    variableValue=variableValue.replace('${platformProjectName}', platformProjectName)
+    variableValue=variableValue.replace('${appProjectName}', appProjectName)
+    variableValue=variableValue.replace('${appSystemId}', appSystemId)
+    variableValue=variableValue.replace('${scmProjectName}', scmProjectName)
 
     return variableValue
 }
@@ -42,6 +36,7 @@ def  yamlTemplateDir =   templateNev(platformEnvName.toString(),"yamlTemplateDir
 def  scmUrl        =templateNev(platformEnvName.toString(),"scmUrl")
 
 def prodScmUrlDevOps =templateNev(platformEnvName.toString(),"prodScmUrlDevOps")
+def serverPrefix = templateNev(platformEnvName.toString(),"serverPrefix")
 
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
@@ -72,7 +67,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 def updatedYaml = writeYaml returnText: true, data: yamlConfig
                 writeFile file: './values.yaml', text: updatedYaml
                 def yamlConfig2 = readYaml file: './values.yaml'
-                sh "cat ./values.yaml"
+                sh 'echo "${serverPrefix}" '
             }
         }
     }
