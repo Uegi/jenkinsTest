@@ -10,7 +10,7 @@ sit1:
   yamlTemplateDir: "javaTemplate-v1"
   scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}.git"
   prodScmUrlDevOps: null
-  serverPrefix: [""]
+  serverPrefix: "ad"
 uat1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
   yamlTemplateDir: "javaTemplate-v1"
