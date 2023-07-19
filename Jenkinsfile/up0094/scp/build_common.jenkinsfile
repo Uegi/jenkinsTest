@@ -27,7 +27,7 @@ def templateNev(final String envName,final String configValue) {
         variableValue=variableValue.replace('${appSystemId}', appSystemId)
         variableValue=variableValue.replace('${scmProjectName}', scmProjectName)
     }
-   
+    print variableTextContent["dev1"]["pipelineConfigTextPath"]  
     return variableValue
 }
 
@@ -35,7 +35,6 @@ def templateNev(final String envName,final String configValue) {
 
 //define and load a global variable 
 def pipelineConfigTextPath = templateNev(platformEnvName.toString(),"pipelineConfigTextPath")
-print pipelineConfigTextPath
 
 def  yamlTemplateDir =   templateNev(platformEnvName.toString(),"yamlTemplateDir")
 
@@ -50,7 +49,6 @@ podTemplate(label: label, cloud: 'kubernetes') {
             git branch: 'develop', url: 'https://uegi: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@github.com/Uegi/jenkinsTest.git'
         }
         stage('copy') {
-            print pipelineConfigTextPath
             sh("""
                 mkdir -p /home/jenkins/artifact/deployments/helm-yaml
                 cp -R ./yaml-template/helm-yaml /home/jenkins/artifact/deployments
