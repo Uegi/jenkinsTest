@@ -58,7 +58,8 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 mkdir -p /home/jenkins/artifact/deployments/helm-yaml
                 cp -R ./yaml-template/helm-yaml /home/jenkins/artifact/deployments
                 ls /home/jenkins/artifact/deployments
-                echo ${variableTextContent}
+                echo ${variableTextContent["pipelineConfigTextPath"]}
+                echo ${variableTextContent["prodScmUrlDevOps"]}
             """)
         }
          stage('test') {
