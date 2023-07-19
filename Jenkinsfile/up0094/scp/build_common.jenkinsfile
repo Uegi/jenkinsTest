@@ -16,10 +16,10 @@ scmProjectName  ="${SCM_PROJECT_NAME}"
 def templateNev(final String envName,final String configValue) {       
     def variableTextPath = libraryResource "variableDefinition/test.yaml"
     def variableTextContent = readYaml text: variableTextPath
-    variableTextContent=variableTextContent.replaceAll('${platformProjectName}', platformProjectName)
-    variableTextContent=variableTextContent.replaceAll('${appProjectName}', appProjectName)
-    variableTextContent=variableTextContent.replaceAll('${appSystemId}', appSystemId)
-    variableTextContent=variableTextContent.replaceAll('${scmProjectName}', scmProjectName)
+    variableTextContent=variableTextContent.replace('${platformProjectName}', platformProjectName)
+    variableTextContent=variableTextContent.replace('${appProjectName}', appProjectName)
+    variableTextContent=variableTextContent.replace('${appSystemId}', appSystemId)
+    variableTextContent=variableTextContent.replace('${scmProjectName}', scmProjectName)
     def variableValue=variableTextContent[envName][configValue]
     return variableValue
 }
