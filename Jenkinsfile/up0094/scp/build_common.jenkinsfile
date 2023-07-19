@@ -74,7 +74,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 def updatedYaml = writeYaml returnText: true, data: yamlConfig
                 writeFile file: './values.yaml', text: updatedYaml
                 def yamlConfig2 = readYaml file: './values.yaml'
-                sh 'echo "${serverPrefix}"'
+                sh 'echo ${serverPrefix}'
             }
         }
     }
