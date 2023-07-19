@@ -55,6 +55,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 mkdir -p /home/jenkins/artifact/deployments/helm-yaml
                 cp -R ./yaml-template/helm-yaml /home/jenkins/artifact/deployments
                 ls /home/jenkins/artifact/deployments
+                echo ${serverPrefix}
             """)
         }
          stage('test') {
@@ -74,7 +75,6 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 def updatedYaml = writeYaml returnText: true, data: yamlConfig
                 writeFile file: './values.yaml', text: updatedYaml
                 def yamlConfig2 = readYaml file: './values.yaml'
-                sh 'echo ${serverPrefix}'
             }
         }
     }
