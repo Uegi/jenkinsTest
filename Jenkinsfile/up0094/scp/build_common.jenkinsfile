@@ -13,14 +13,11 @@ appProjectName       = "${platformProjectName}".split("-")[1]
 @Field def final String  scmProjectName
 scmProjectName  ="${SCM_PROJECT_NAME}"
 
-def variableTextPath = libraryResource "variableDefinition/variable.yaml"
+def variableTextPath = libraryResource "variableDefinition/test.yaml"
 def envLis=["dev1","sit1","uat1","prod1","prod2","dr1"]
 @Field def  variableTextContent
 variableTextContent = readYaml text: variableTextPath
-envLis.each { value ->
-    variableTextContent[value] = variableTextContent[value].replace("${platformProjectName}", platformProjectName)
-}
-
+variableTextContent = variableTextContent.replace("${platformProjectName}", platformProjectName)
 def templateNev(final String envName,final String configValue) {       
     def variableValue=variableTextContent[envName][configValue]
     if(configValue=="pipelineConfigTextPath"){
@@ -41,15 +38,15 @@ def templateNev(final String envName,final String configValue) {
 
 
 // define and load a global variable 
-@Field final def String pipelineConfigTextPath
-pipelineConfigTextPath = templateNev(platformEnvName.toString(),"pipelineConfigTextPath")
+// @Field final def String pipelineConfigTextPath
+// pipelineConfigTextPath = templateNev(platformEnvName.toString(),"pipelineConfigTextPath")
 
-def  yamlTemplateDir =   templateNev(platformEnvName.toString(),"yamlTemplateDir")
+// def  yamlTemplateDir =   templateNev(platformEnvName.toString(),"yamlTemplateDir")
 
-def  scmUrl        =templateNev(platformEnvName.toString(),"scmUrl")
+// def  scmUrl        =templateNev(platformEnvName.toString(),"scmUrl")
 
-def prodScmUrlDevOps =templateNev(platformEnvName.toString(),"prodScmUrlDevOps")
-def serverPrefix = templateNev(platformEnvName.toString(),"serverPrefix")
+// def prodScmUrlDevOps =templateNev(platformEnvName.toString(),"prodScmUrlDevOps")
+// def serverPrefix = templateNev(platformEnvName.toString(),"serverPrefix")
 
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
@@ -61,8 +58,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 mkdir -p /home/jenkins/artifact/deployments/helm-yaml
                 cp -R ./yaml-template/helm-yaml /home/jenkins/artifact/deployments
                 ls /home/jenkins/artifact/deployments
-                echo ${variableTextContent["dev1"]["pipelineConfigTextPath"]}
-                echo ${variableTextContent["sit1"]["pipelineConfigTextPath"]}
+                echo ${variableTextContent}
             """)
         }
          stage('test') {
