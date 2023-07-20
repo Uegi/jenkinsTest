@@ -24,7 +24,6 @@ def templateNev(final String envName,final String configValue) {
         variableValue=variableValue.replace('${appSystemId}', appSystemId)
         variableValue=variableValue.replace('${scmProjectName}', scmProjectName)
     }
-    print variableTextContent["dev1"]["pipelineConfigTextPath"]  
     return variableValue
 }
 
@@ -59,7 +58,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
     }
 }
 
-def editHelmValue(platformprojectname) {     
+def editHelmValue(String platformprojectname) {     
     dir('/home/jenkins/artifact/deployments/helm-yaml'){
         def t1= 1
         def t2='2'
