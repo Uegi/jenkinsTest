@@ -40,7 +40,10 @@ def prodScmUrlDevOps =templateNev(platformEnvName.toString(),"prodScmUrlDevOps")
 def serverPrefix = templateNev(platformEnvName.toString(),"serverPrefix")
 def _backendSource = templateNev(platformEnvName.toString(),"_backendSource")
 def autoGetTagNameTarge= templateNev(platformEnvName.toString(),"autoGetTagNameTarge")
-def test='asdadas'
+autoGetTagNameTarge=("${deploymentEnvName}".startsWith('dev'))?autoGetTagNameTarge['dev']:autoGetTagNameTarge
+autoGetTagNameTarge=("${deploymentEnvName}".startsWith('sit'))?autoGetTagNameTarge['sit']:autoGetTagNameTarge
+autoGetTagNameTarge=("${deploymentEnvName}".startsWith('uat'))?autoGetTagNameTarge['uat']:autoGetTagNameTarge
+autoGetTagNameTarge=("${deploymentEnvName}".startsWith('prod'))?autoGetTagNameTarge['prod']:autoGetTagNameTarge
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
         stage('git'){
@@ -51,7 +54,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
                 mkdir -p /home/jenkins/artifact/deployments/helm-yaml
                 cp -R ./yaml-template/helm-yaml /home/jenkins/artifact/deployments
                 ls /home/jenkins/artifact/deployments
-                echo ${test}
+                echo ${autoGetTagNameTarge}
             """)
         }
          stage('test') {
