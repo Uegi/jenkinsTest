@@ -68,7 +68,7 @@ def editHelmValue() {
         def t5="true"
         def yamlConfig = readYaml file: './values.yaml'
         yamlConfig.build_number= "${t1}"
-        yamlConfig.actuator_port= t2.toInteger()
+        yamlConfig.actuator_port= t2 as Integer
         yamlConfig.apm_configuration_name= "\"${t3}\""
         yamlConfig.app_major_version= t4.toBoolean()
         yamlConfig.app_name= t5.toBoolean()
