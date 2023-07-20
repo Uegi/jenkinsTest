@@ -53,12 +53,12 @@ podTemplate(label: label, cloud: 'kubernetes') {
             """)
         }
          stage('test') {
-           sh "editHelmValue ${platformprojectname}"
+           sh script: editHelmValue(platformProjectName)
         }
     }
 }
 
-def editHelmValue(String platformprojectname) {     
+def editHelmValue(platformprojectname) {     
     dir('/home/jenkins/artifact/deployments/helm-yaml'){
         def t1= 1
         def t2='2'
