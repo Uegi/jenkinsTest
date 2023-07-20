@@ -53,7 +53,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
             """)
         }
          stage('test') {
-           //sh script: editHelmValue(platformprojectname)
+           sh "editHelmValue ${platformprojectname}"
         }
     }
 }
