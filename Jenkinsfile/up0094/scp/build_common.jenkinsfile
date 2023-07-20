@@ -62,7 +62,7 @@ def editHelmValue() {
     dir('/home/jenkins/artifact/deployments/helm-yaml'){
         def t1= 1
         def t2='2'
-        def t3=' -XX:HeapDumpPath=/deployments/log/\$(POD_NAME)-heap.hprof -Xloggc:/deployment/log'
+        def t3=" -XX:HeapDumpPath=/deployments/log/\$(POD_NAME)-heap.hprof -Xloggc:/deployment/log"
         def t4='false'
         def t5="true"
         def yamlConfig = readYaml file: './values.yaml'
