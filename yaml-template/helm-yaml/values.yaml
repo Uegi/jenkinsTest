@@ -3,3 +3,4 @@ apm_configuration_name:
 app_major_version: 
 app_name: 
 build_number: "test"
+platform_project_name:
