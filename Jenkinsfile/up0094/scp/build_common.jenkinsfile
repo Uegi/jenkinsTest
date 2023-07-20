@@ -74,8 +74,5 @@ def editHelmValue() {
         yamlConfig.platform_project_name="${platformProjectName}"
         def updatedYaml = writeYaml returnText: true, data: yamlConfig
         writeFile file: './values.yaml', text: updatedYaml
-        """
-        cat  ./values.yaml
-        """
     }
 }
