@@ -5,23 +5,27 @@ dev1:
   scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}"
   prodScmUrlDevOps: null
   serverPrefix: [""]
+  _backendSource: ""
 sit1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
   yamlTemplateDir: "javaTemplate-v1"
   scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}.git"
   prodScmUrlDevOps: null
   serverPrefix: [""]
+  _backendSource: ""
 uat1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
   yamlTemplateDir: "javaTemplate-v1"
   prodScmUrlDevOps: null
   serverPrefix: [""]
+  _backendSource: ""
 dr1:
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
   yamlTemplateDir: "${appProjectName}"
   scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}.git"
   prodScmUrlDevOps: "https://www.testcns.com.tw/UP0094/cicd.git"
   serverPrefix: [""]
+  _backendSource: ""
 #正式
 prod1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
@@ -29,9 +33,11 @@ prod1:
   scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}.git"
   prodScmUrlDevOps: "https://www.testcns.com.tw/UP0094/cicd.git"
   serverPrefix: [""]
+  _backendSource: ""
 prod2: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
   yamlTemplateDir: "${appProjectName}"
   scmUrl: "https://www.testcns.com.tw/${appSystemId}/${scmProjectName}.git"
   prodScmUrlDevOps: "https://www.testcns.com.tw/UP0094/cicd.git"
   serverPrefix: [""]
+  _backendSource: ""
