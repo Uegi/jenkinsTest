@@ -53,7 +53,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
             """)
         }
          stage('test') {
-           editHelmValue()
+           sh script: editHelmValue()
         }
     }
 }
@@ -74,6 +74,6 @@ def editHelmValue() {
         yamlConfig.platform_project_name="${platformProjectName}"
         def updatedYaml = writeYaml returnText: true, data: yamlConfig
         writeFile file: './values.yaml', text: updatedYaml
-        sh "cat ./values.yaml"
+        cat ./values.yamls
     }
 }
