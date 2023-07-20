@@ -6,6 +6,11 @@ dev1:
   prodScmUrlDevOps: null
   serverPrefix: [""]
   _backendSource: ""
+  autoGetTagNameTarge:
+     dev:  "f."
+     sit:  "s."
+     uat:  "u."
+     prod: "p."
 sit1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
   yamlTemplateDir: "javaTemplate-v1"
@@ -13,12 +18,22 @@ sit1:
   prodScmUrlDevOps: null
   serverPrefix: [""]
   _backendSource: ""
+  autoGetTagNameTarge:
+     dev:  "f."
+     sit:  "s."
+     uat:  "u."
+     prod: "p."
 uat1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/common/pipelineConfig.yaml"
   yamlTemplateDir: "javaTemplate-v1"
   prodScmUrlDevOps: null
   serverPrefix: [""]
   _backendSource: ""
+  autoGetTagNameTarge:
+     dev:  "f."
+     sit:  "s."
+     uat:  "u."
+     prod: "p."
 dr1:
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
   yamlTemplateDir: "${appProjectName}"
@@ -26,6 +41,11 @@ dr1:
   prodScmUrlDevOps: "https://www.testcns.com.tw/UP0094/cicd.git"
   serverPrefix: [""]
   _backendSource: ""
+  autoGetTagNameTarge:
+     dev:  "f."
+     sit:  "s."
+     uat:  "u."
+     prod: "p."
 #正式
 prod1: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
@@ -34,6 +54,11 @@ prod1:
   prodScmUrlDevOps: "https://www.testcns.com.tw/UP0094/cicd.git"
   serverPrefix: [""]
   _backendSource: ""
+  autoGetTagNameTarge:
+     dev:  "f."
+     sit:  "s."
+     uat:  "u."
+     prod: "p."
 prod2: 
   pipelineConfigTextPath: "pipelineConfig-ocp410/${platformProjectName}/prod/pipelineConfig.yaml"
   yamlTemplateDir: "${appProjectName}"
@@ -41,3 +66,8 @@ prod2:
   prodScmUrlDevOps: "https://www.testcns.com.tw/UP0094/cicd.git"
   serverPrefix: [""]
   _backendSource: ""
+  autoGetTagNameTarge:
+     dev:  "f."
+     sit:  "s."
+     uat:  "u."
+     prod: "p."
