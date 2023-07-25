@@ -58,7 +58,7 @@ podTemplate(label: label, cloud: 'kubernetes') {
             """)
         }
          stage('test') {
-           //editHelmValue()
+           editHelmValue()
         }
     }
 }
