@@ -77,6 +77,7 @@ def editHelmValue() {
         yamlConfig.app_major_version= t4.toBoolean()
         yamlConfig.app_name= t5.toBoolean()
         yamlConfig.platform_project_name="${platformProjectName}"
+        yamlConfig.scp_job_name="testtajdglq"
         def updatedYaml = writeYaml returnText: true, data: yamlConfig
         writeFile file: './values.yaml', text: updatedYaml
         sh "cat ./values.yaml"
