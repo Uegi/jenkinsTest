@@ -1,9 +1,12 @@
 import groovy.transform.Field
 @Library('jenkins-library@develop') _
 def label = "buildah"
+def  containerPlatform   = "${CONTAINER_PLATFORM}"
+def  baseImage           = "${BASE_IMAGE_PATH_TAG}"
 def  platformEnvName     = "${PLATFORM_ENV_NAME}"
 def  deploymentEnvName   = "${DEPLOYMENT_ENV_NAME}"
-@Field def platformProjectName =params.PLATFORM_PROJECT_NAME
+@Field def final String  platformProjectName
+platformProjectName="${PLATFORM_PROJECT_NAME}"
 @Field def final String  appSystemId
 appSystemId          = "${platformProjectName}".split("-")[0]
 @Field def final String  appProjectName
@@ -11,6 +14,8 @@ appProjectName       = "${platformProjectName}".split("-")[1]
 
 @Field def final String  scmProjectName
 scmProjectName  ="${SCM_PROJECT_NAME}"
+
+
 
 
 def templateNev(final String envName,final String configValue) {     
@@ -43,6 +48,11 @@ autoGetTagNameTarge=("${deploymentEnvName}".startsWith('dev'))?autoGetTagNameTar
 autoGetTagNameTarge=("${deploymentEnvName}".startsWith('sit'))?autoGetTagNameTarge['sit']:autoGetTagNameTarge
 autoGetTagNameTarge=("${deploymentEnvName}".startsWith('uat'))?autoGetTagNameTarge['uat']:autoGetTagNameTarge
 autoGetTagNameTarge=("${deploymentEnvName}".startsWith('prod'))?autoGetTagNameTarge['prod']:autoGetTagNameTarge
+
+print """
+containerPlatform: $containerPlatform
+baseImage:         $baseImage
+"""
 podTemplate(label: label, cloud: 'kubernetes') {
     node(label) {
         stage('git'){
