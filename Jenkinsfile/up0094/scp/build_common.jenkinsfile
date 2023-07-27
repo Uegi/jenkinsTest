@@ -1,5 +1,5 @@
 import groovy.transform.Field
-job('MyParameterizedJob') {
+job('UP0094_BUILD') {
    description('qwejkhqwejkhqjwehqwehqwelk')
 }
 @Library('jenkins-library@develop') _
