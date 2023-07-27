@@ -1,5 +1,6 @@
 import groovy.transform.Field
 @Library('jenkins-library@develop') _
+description('qwejkhqwejkhqjwehqwehqwelk')
 def label = "buildah"
 def  containerPlatform   = "${CONTAINER_PLATFORM}"
 def  baseImage           = "${BASE_IMAGE_PATH_TAG}"
