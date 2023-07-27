@@ -3,7 +3,7 @@ import groovy.transform.Field
 def label = "buildah"
 def  platformEnvName     = "${PLATFORM_ENV_NAME}"
 def  deploymentEnvName   = "${DEPLOYMENT_ENV_NAME}"
-@Field def platformProjectName =PLATFORM_PROJECT_NAME
+@Field def platformProjectName =params.PLATFORM_PROJECT_NAME
 @Field def final String  appSystemId
 appSystemId          = "${platformProjectName}".split("-")[0]
 @Field def final String  appProjectName
