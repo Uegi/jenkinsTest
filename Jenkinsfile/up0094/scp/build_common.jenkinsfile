@@ -1,7 +1,9 @@
 import groovy.transform.Field
-job('UP0094_BUILD') {
-   description('qwejkhqwejkhqjwehqwehqwelk')
+
 @Library('jenkins-library@develop') _
+job('UP0094_BUILD') {
+    description('Thqqeqweqweqeqeqwwe')
+}
 def label = "buildah"
 def  containerPlatform   = "${CONTAINER_PLATFORM}"
 def  baseImage           = "${BASE_IMAGE_PATH_TAG}"
@@ -93,5 +95,4 @@ def editHelmValue() {
         writeFile file: './values.yaml', text: updatedYaml
         sh "cat ./values.yaml"
     }
-}
 }
